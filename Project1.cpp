@@ -76,7 +76,7 @@ int readInt(const char prompt[]){
 }
 
 //Validates Doubles
-int readDouble(const char prompt[]){
+double readDouble(const char prompt[]){
     double temp = 0.0;
     cout << prompt;
     cin >> temp;
@@ -109,7 +109,7 @@ void printCars(CarType carList, int carNum) {
 
 //Prints by origin
 void printCarsByOrigin(CarType *carList,char userOrigin[]) {
-  for(int i = 0; i < 407; i++) {
+  for(int i = 0; i < 500; i++) {
     if(strcmp(carList[i].Origin,userOrigin) == 0) {
       printCars(carList[i],i);
     }
