@@ -3,7 +3,7 @@
 #include <cstring>
 using namespace std;
 
-//Struct creation for data types for cars
+//Struct creation for cars
 struct CarType {
   enum {MAX_CHAR_LEN=100};
   char CarName[MAX_CHAR_LEN];
@@ -19,7 +19,7 @@ struct CarType {
   CarType();
 };
 
-//Default constructor setting everything to 0 or empty
+//Default constructor setting everything to 0
 CarType::CarType() {
   MPG = 0.0;
   Cylinders = 0;
@@ -60,7 +60,7 @@ CarType readCarData(ifstream &inFile) {
     return car;
 }
 
-//Validates input
+//Validates Ints
 int readInt(const char prompt[]){
     int temp = 0;
     cout << prompt;
@@ -119,8 +119,6 @@ void printCarsByOrigin(CarType *carList,char userOrigin[]) {
 //Removes cars
 void removeCar(CarType *carList) {
   int carNum = 0;
-  cout << "What car would you like to remove?: ";
-  cin >> carNum;
   carNum = readInt("What car would you like to remove?: ");
   cout << endl;
   carList[carNum].ValidEntry = false;
@@ -129,42 +127,38 @@ void removeCar(CarType *carList) {
 
 //Adds cars
 void addCars(CarType *carList) {
+  bool isCarAdded = false;
   for(int i = 0; i < 500; i++) {
     int tempInt = 0;
     double tempDouble = 0.0;
+    //Looping for adding car data
     if(carList[i].ValidEntry == false) {
       cout << "You are modifiying car #" << i << endl;
       cout << "Name: ";
       cin >> carList[i].CarName;
-      
       tempDouble = readDouble("\nMPG: ");
       carList[i].MPG = tempDouble;
-      
       tempInt = readInt("\nCylinders: ");
       carList[i].Cylinders = tempInt;
-    
       tempDouble = readDouble("\nDisplacement: ");
       carList[i].Displacement = tempDouble;
-   
       tempDouble = readDouble("\nHorsepower: ");
       carList[i].Horsepower = tempDouble;
-    
       tempDouble = readDouble("\nWeight: ");
       carList[i].Weight = tempDouble;
-      
       tempDouble = readDouble("\nAcceleration: ");
       carList[i].Acceleration = tempDouble;
-      
       tempInt = readInt("\nModel: ");
       carList[i].Model = tempInt;
-      
       cout << "\nOrigin: ";
       cin >> carList[i].Origin;
       carList[i].ValidEntry = true;
+      isCarAdded = true;
+
       break;
     }
   }
-  if(carList[499].ValidEntry == true) {
+  if(isCarAdded == false) {
     cout << "Sorry! The array is full already" << endl;
   }
 }
