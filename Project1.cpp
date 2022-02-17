@@ -58,7 +58,6 @@ CarType readCarData(ifstream &inFile) {
     inFile >> car.Model;
     inFile.ignore(100,';');
     inFile.get(car.Origin, CarType::MAX_CHAR_LEN, '\n');
-    inFile.ignore(100,'\n');
     // If we reached the end of the file while reading, then the entry is not valid
     car.ValidEntry = !inFile.eof();
     return car;
@@ -130,7 +129,7 @@ void removeCar(CarType *carList) {
 }
 
 //Adds cars
-void addCars(CarType *carList) {
+void addCars(CarType *carList, int carSize) {
   bool isCarAdded = false;
   for(int i = 0; i < 500; i++) {
     int tempInt = 0;
@@ -139,7 +138,8 @@ void addCars(CarType *carList) {
     if(carList[i].ValidEntry == false) {
       cout << "You are modifiying car #" << i << endl;
       cout << "Name: ";
-      cin >> carList[i].CarName;
+      cin.ignore(100,'\n');
+      cin.getline(carList[i].CarName,carSize);
       tempDouble = readDouble("\nMPG: ");
       carList[i].MPG = tempDouble;
       tempInt = readInt("\nCylinders: ");
@@ -155,7 +155,8 @@ void addCars(CarType *carList) {
       tempInt = readInt("\nModel: ");
       carList[i].Model = tempInt;
       cout << "\nOrigin: ";
-      cin >> carList[i].Origin;
+      cin.ignore(100,'\n');
+      cin.getline(carList[i].Origin,carSize);
       carList[i].ValidEntry = true;
       isCarAdded = true;
 
@@ -219,7 +220,7 @@ int main() {
         break;
       //Adding a car to the list
       case 3:
-        addCars(carList);
+        addCars(carList,counter);
         break;
       //Removing car from list
       case 4:
