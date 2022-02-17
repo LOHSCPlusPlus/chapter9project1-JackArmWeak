@@ -21,6 +21,10 @@ struct CarType {
 
 //Default constructor setting everything to 0
 CarType::CarType() {
+  for (int i = 0; i < MAX_CHAR_LEN; i++) {
+        CarName[i] = '\0';
+        Origin[i] = '\0';
+  }
   MPG = 0.0;
   Cylinders = 0;
   Displacement = 0.0;
