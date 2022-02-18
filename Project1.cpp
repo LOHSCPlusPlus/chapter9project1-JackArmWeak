@@ -111,7 +111,7 @@ void printCars(CarType carList, int carNum) {
 }
 
 //Prints by origin
-void printCarsByOrigin(CarType *carList,char userOrigin[]) {
+void printCarsByOrigin(CarType carList[],char userOrigin[]) {
   for(int i = 0; i < 500; i++) {
     if(strcmp(carList[i].Origin,userOrigin) == 0) {
       printCars(carList[i],i);
@@ -120,7 +120,7 @@ void printCarsByOrigin(CarType *carList,char userOrigin[]) {
 }
 
 //Removes cars
-void removeCar(CarType *carList) {
+void removeCar(CarType carList[]) {
   int carNum = 0;
   carNum = readInt("What car would you like to remove?: ");
   cout << endl;
@@ -129,7 +129,7 @@ void removeCar(CarType *carList) {
 }
 
 //Adds cars
-void addCars(CarType *carList, int carSize) {
+void addCars(CarType carList[], int carSize) {
   bool isCarAdded = false;
   for(int i = 0; i < 500; i++) {
     int tempInt = 0;
