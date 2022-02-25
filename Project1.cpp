@@ -58,6 +58,7 @@ CarType readCarData(ifstream &inFile) {
     inFile >> car.Model;
     inFile.ignore(100,';');
     inFile.get(car.Origin, CarType::MAX_CHAR_LEN, '\n');
+    inFile.ignore(100,'\n');
     // If we reached the end of the file while reading, then the entry is not valid
     car.ValidEntry = !inFile.eof();
     return car;
